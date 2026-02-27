@@ -215,6 +215,24 @@ background: linear-gradient(
 
 ### 3.2 `NavBar` — Top Header Bar
 
+The navigation bar features the **official OAT logo mark** and primary navigation links.
+
+#### Brand Logo
+```html
+<a href="#" class="nav-brand">
+    <img src="images/oat-logo-mark.png" alt="Origin Africa Logo">
+    <span>Origin Africa</span>
+</a>
+```
+
+#### Logo Styles
+```css
+.nav-brand img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+}
+```
 **Structure:**
 ```
 header.header-top
