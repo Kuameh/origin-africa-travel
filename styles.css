@@ -1174,6 +1174,7 @@ body:active .cursor-outline {
         cursor: auto;
     }
 }
+
 /* ── 10. Services Section ─────────────────────────────────── */
 .services {
     background: var(--c-bg-base);
@@ -1336,19 +1337,39 @@ body:active .cursor-outline {
     .tours-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
     .impact-grid {
         grid-template-columns: 1fr;
     }
+
     .essentials-grid {
         grid-template-columns: 1fr;
     }
 }
 
 @media (max-width: 768px) {
-    .nav { padding: 1rem 2rem; }
-    .nav.scrolled { padding: 0.8rem 2rem; }
-    .tours-grid { grid-template-columns: 1fr; }
-    .about-grid { grid-template-columns: 1fr; }
-    .about-image-wrap img { height: 400px; }
-    .about-stats { flex-wrap: wrap; gap: var(--space-md); }
+    .nav {
+        padding: 1rem 2rem;
+    }
+
+    .nav.scrolled {
+        padding: 0.8rem 2rem;
+    }
+
+    .tours-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-image-wrap img {
+        height: 400px;
+    }
+
+    .about-stats {
+        flex-wrap: wrap;
+        gap: var(--space-md);
+    }
 }
