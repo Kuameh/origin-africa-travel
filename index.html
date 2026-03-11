@@ -37,6 +37,7 @@
         <div class="nav-links" id="navLinks">
             <a href="#about" class="nav-link">About</a>
             <a href="#tours" class="nav-link">Experiences</a>
+            <a href="#gallery" class="nav-link">Gallery</a>
             <a href="#contact" class="nav-link">Contact</a>
             <a href="#contact" class="nav-cta">Plan Your Journey</a>
         </div>
@@ -202,6 +203,76 @@
         </div>
     </section>
 
+    <!-- ═══ Gallery Showcase Section ═══ -->
+    <section class="section gallery" id="gallery">
+        <div class="section-inner">
+            <div class="gallery-header">
+                <p class="section-tag reveal">Gallery</p>
+                <h2 class="section-heading reveal reveal-delay-1">Moments from the <i>journey</i></h2>
+                <p class="reveal reveal-delay-2">A glimpse into the experiences, landscapes, and cultural encounters that define every Origin Africa adventure.</p>
+            </div>
+
+            <div class="gallery-grid">
+                <!-- Row 1 -->
+                <div class="gallery-item span-2 reveal reveal-delay-1" data-gallery-index="0" data-type="image" data-src="images/1.JPG">
+                    <img src="images/1.JPG" alt="Origin Africa Travel — Journey moment 1" loading="lazy">
+                    <div class="gallery-overlay"><span class="gallery-overlay-icon">⤢</span></div>
+                </div>
+                <div class="gallery-item reveal reveal-delay-2" data-gallery-index="1" data-type="image" data-src="images/2.JPG">
+                    <img src="images/2.JPG" alt="Origin Africa Travel — Journey moment 2" loading="lazy">
+                    <div class="gallery-overlay"><span class="gallery-overlay-icon">⤢</span></div>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="gallery-item reveal reveal-delay-1" data-gallery-index="2" data-type="image" data-src="images/3.JPG">
+                    <img src="images/3.JPG" alt="Origin Africa Travel — Journey moment 3" loading="lazy">
+                    <div class="gallery-overlay"><span class="gallery-overlay-icon">⤢</span></div>
+                </div>
+                <div class="gallery-item reveal reveal-delay-2" data-gallery-index="3" data-type="image" data-src="images/4.JPG">
+                    <img src="images/4.JPG" alt="Origin Africa Travel — Journey moment 4" loading="lazy">
+                    <div class="gallery-overlay"><span class="gallery-overlay-icon">⤢</span></div>
+                </div>
+                <div class="gallery-item reveal reveal-delay-3" data-gallery-index="4" data-type="video" data-src="videos/8.MOV">
+                    <video src="videos/8.MOV" muted loop playsinline preload="metadata"></video>
+                    <div class="gallery-overlay"><span class="gallery-overlay-icon">▶</span></div>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="gallery-item reveal reveal-delay-1" data-gallery-index="5" data-type="image" data-src="images/5.JPG">
+                    <img src="images/5.JPG" alt="Origin Africa Travel — Journey moment 5" loading="lazy">
+                    <div class="gallery-overlay"><span class="gallery-overlay-icon">⤢</span></div>
+                </div>
+                <div class="gallery-item span-2 reveal reveal-delay-2" data-gallery-index="6" data-type="video" data-src="videos/10.MOV">
+                    <video src="videos/10.MOV" muted loop playsinline preload="metadata"></video>
+                    <div class="gallery-overlay"><span class="gallery-overlay-icon">▶</span></div>
+                </div>
+
+                <!-- Row 4 -->
+                <div class="gallery-item reveal reveal-delay-1" data-gallery-index="7" data-type="image" data-src="images/6.JPG">
+                    <img src="images/6.JPG" alt="Origin Africa Travel — Journey moment 6" loading="lazy">
+                    <div class="gallery-overlay"><span class="gallery-overlay-icon">⤢</span></div>
+                </div>
+                <div class="gallery-item reveal reveal-delay-2" data-gallery-index="8" data-type="image" data-src="images/7.JPG">
+                    <img src="images/7.JPG" alt="Origin Africa Travel — Journey moment 7" loading="lazy">
+                    <div class="gallery-overlay"><span class="gallery-overlay-icon">⤢</span></div>
+                </div>
+                <div class="gallery-item reveal reveal-delay-3" data-gallery-index="9" data-type="video" data-src="videos/11.MOV">
+                    <video src="videos/11.MOV" muted loop playsinline preload="metadata"></video>
+                    <div class="gallery-overlay"><span class="gallery-overlay-icon">▶</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ Gallery Lightbox ═══ -->
+    <div class="gallery-lightbox" id="galleryLightbox">
+        <button class="gallery-lightbox-close" id="lightboxClose" aria-label="Close lightbox">✕</button>
+        <button class="gallery-lightbox-nav gallery-lightbox-prev" id="lightboxPrev" aria-label="Previous">←</button>
+        <button class="gallery-lightbox-nav gallery-lightbox-next" id="lightboxNext" aria-label="Next">→</button>
+        <div class="gallery-lightbox-media" id="lightboxMedia"></div>
+        <div class="gallery-lightbox-counter" id="lightboxCounter"></div>
+    </div>
+
     <!-- ═══ CTA / Tagline Section ═══ -->
     <section class="cta-section" id="contact">
         <div class="cta-bg">
@@ -245,6 +316,7 @@
                     <a href="#tours">Ghana Discovery</a>
                     <a href="#tours">August Experience</a>
                     <a href="#tours">Private Tours</a>
+                    <a href="#gallery">Gallery</a>
                 </div>
                 <div class="footer-col">
                     <h4 class="footer-col-title">Company</h4>
@@ -362,6 +434,89 @@
                 }
             });
         });
+
+        /* ── Gallery Lightbox ── */
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const lightbox = document.getElementById('galleryLightbox');
+        const lightboxMedia = document.getElementById('lightboxMedia');
+        const lightboxCounter = document.getElementById('lightboxCounter');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+
+        let currentGalleryIndex = 0;
+        const totalGalleryItems = galleryItems.length;
+
+        function openLightbox(index) {
+            currentGalleryIndex = index;
+            updateLightboxMedia();
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+            // Pause any playing video
+            const vid = lightboxMedia.querySelector('video');
+            if (vid) vid.pause();
+            // Small delay then clear
+            setTimeout(() => { lightboxMedia.innerHTML = ''; }, 400);
+        }
+
+        function updateLightboxMedia() {
+            const item = galleryItems[currentGalleryIndex];
+            const type = item.dataset.type;
+            const src = item.dataset.src;
+
+            // Pause previous video if any
+            const prevVid = lightboxMedia.querySelector('video');
+            if (prevVid) prevVid.pause();
+
+            if (type === 'video') {
+                lightboxMedia.innerHTML = `<video src="${src}" controls autoplay muted loop playsinline style="max-width:90vw;max-height:85vh;"></video>`;
+            } else {
+                lightboxMedia.innerHTML = `<img src="${src}" alt="Gallery image ${currentGalleryIndex + 1}">`;
+            }
+
+            lightboxCounter.textContent = `${currentGalleryIndex + 1} / ${totalGalleryItems}`;
+        }
+
+        function nextSlide() {
+            currentGalleryIndex = (currentGalleryIndex + 1) % totalGalleryItems;
+            updateLightboxMedia();
+        }
+
+        function prevSlide() {
+            currentGalleryIndex = (currentGalleryIndex - 1 + totalGalleryItems) % totalGalleryItems;
+            updateLightboxMedia();
+        }
+
+        galleryItems.forEach((item) => {
+            item.addEventListener('click', () => {
+                openLightbox(parseInt(item.dataset.galleryIndex));
+            });
+        });
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxPrev.addEventListener('click', prevSlide);
+        lightboxNext.addEventListener('click', nextSlide);
+
+        // Close on background click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        /* Re-observe new gallery .reveal elements */
+        document.querySelectorAll('.gallery .reveal').forEach(el => revealObserver.observe(el));
     </script>
 
 </body>
